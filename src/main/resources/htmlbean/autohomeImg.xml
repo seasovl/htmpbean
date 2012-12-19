@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html-1>
+	<head-1>
+		<title>#{title}</title>
+	</head-1>
+	<body>
+		<div>
+			<div>
+				#{text}
+			</div>
+			<div>
+				<a href='#{href}' >
+					<list>
+						<strong>${Exige #{regx} }</strong>
+					</list>
+				</a>
+			</div>
+		</div>
+	</body>
+</html-1>
+<!-- //1 解析获得路径信息
+/html/head/title
+/html/body/div/div
+/html/body/div/div[2]/a/strong
+//2 获得key 
+//3 获得属性类型 文本 或者属性
+//4 获得属性名
+//5 获得正则字符
+
+
+
+ -->
