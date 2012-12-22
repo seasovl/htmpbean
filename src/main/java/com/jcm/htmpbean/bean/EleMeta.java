@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 public class EleMeta implements Serializable{
 	private static final long serialVersionUID = 529153460887330822L;
-	private String htmlpath;
-	private String jname;
-	private String type;
-	private String proname;
-	private String regstr;
+	private String htmlpath="";//html 树路径
+	private String jname; //json key值
+	private String proname="txt";//属性名 attr /  txt
+	private String type; //类型 信息是 属性 或者 文本
+	
+	
+	private Boolean isregxp=false;//是否使用正则匹配
+	private String fistregstr;//首正则字符
+	private String lastregstr;//末正则字符
 	public String getHtmlpath() {
 		return htmlpath;
 	}
@@ -33,19 +37,43 @@ public class EleMeta implements Serializable{
 	public void setProname(String proname) {
 		this.proname = proname;
 	}
-	public String getRegstr() {
-		return regstr;
+
+	public String getFistregstr() {
+		return fistregstr;
 	}
-	public void setRegstr(String regstr) {
-		this.regstr = regstr;
+	public void setFistregstr(String fistregstr) {
+		this.fistregstr = fistregstr;
 	}
-	protected EleMeta clone() {
-		EleMeta eleMeta=new EleMeta();
-		eleMeta.htmlpath=this.htmlpath;
-		eleMeta.jname=this.jname;
-		eleMeta.proname=this.proname;
-		eleMeta.regstr=this.regstr;
-		eleMeta.type=this.type;
-		return eleMeta;
+	public String getLastregstr() {
+		return lastregstr;
+	}
+	public void setLastregstr(String lastregstr) {
+		this.lastregstr = lastregstr;
+	}
+	
+	public Boolean getIsregxp() {
+		return isregxp;
+	}
+	public void setIsregxp(Boolean isregxp) {
+		this.isregxp = isregxp;
+	}
+	public void clone(EleMeta eleMeta) {
+		this.htmlpath=eleMeta.htmlpath;
+		this.jname=eleMeta.jname;
+		this.proname=eleMeta.proname;
+		this.fistregstr=eleMeta.fistregstr;
+		this.lastregstr=eleMeta.lastregstr;
+		this.isregxp=eleMeta.isregxp;
+		this.type=eleMeta.type;
+	}
+	public String print()
+	{
+		return 	"htmlpath="+this.htmlpath+
+		"\tjname="+this.jname+
+		"\tproname="+this.proname+
+		"\tfistregstr="+this.fistregstr+
+		"\tlastregstr="+this.lastregstr+
+		"\tisregxp="+this.isregxp+
+		"\ttype="+this.type;
 	}
 }

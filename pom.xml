@@ -41,5 +41,25 @@
 		<artifactId>hsqldb</artifactId>
 		<version>2.2.9</version>
 	</dependency>
+	<dependency>
+		<groupId>org.hsqldb</groupId>
+		<artifactId>sqltool</artifactId>
+		<version>2.2.9</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.1.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>3.1.0.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.1.1</version>
+	</dependency>
   </dependencies>
 </project>

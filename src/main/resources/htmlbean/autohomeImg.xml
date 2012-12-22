@@ -11,7 +11,9 @@
 			<div>
 				<a href='#{href}' >
 					<list>
-						<strong>${Exige #{regx} }</strong>
+						<strong>${fist1 #{regx1}last1 }</strong>
+						<strong>${fist2 #{regx2}last2}</strong>
+						<strong>${fist3 #{regx3}last3}</strong>
 					</list>
 				</a>
 			</div>
