@@ -19,8 +19,8 @@ public class TagParserTest {
 		SqlSessionFactory sqlSessionFactory= factoryBuilder.build(TagParserTest.class.getResourceAsStream("/ibatisconf/configuration.xml"));
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-		Object o=session.selectOne("selectRegexpUrl","http://dealer.autohome.com.cn/3969/info.html");
-		System.out.println(o);
+	//	Object o=session.selectOne("selectRegexpUrl","http://dealer.autohome.com.cn/3969/info.html");
+	//	System.out.println(o);
 		} finally {
 		session.close();
 		}

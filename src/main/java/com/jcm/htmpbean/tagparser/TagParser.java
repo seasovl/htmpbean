@@ -1,14 +1,12 @@
 package com.jcm.htmpbean.tagparser;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.cyberneko.html.parsers.DOMParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -21,14 +19,15 @@ import com.jcm.htmpbean.bean.EleMeta;
 
 public class TagParser {
 	public static Pattern pattern=Pattern.compile("[#\\$]\\{.*");
-	public static EleBlock parser(EleBlock eleBlock,InputSource stream) 
+	public static EleBlock parser(InputSource stream)
 	{
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder;
+		 EleBlock eleBlock=new EleBlock();
 		try {
 			documentBuilder = builderFactory.newDocumentBuilder();
 			Document document=documentBuilder.parse(stream);
-			
+			xmlparser(document.getFirstChild(),eleBlock,new EleMeta());
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}catch (SAXException e) {
@@ -63,8 +62,8 @@ public class TagParser {
 			if(node.getNodeValue()!=null && ! node.getNodeValue().trim().equals("") &&  pattern.matcher( node.getNodeValue() ).find()){
 				getJname(node, eleMeta);
 				eleBlock.getEleMetas().add(eleMeta);
-				System.out.println(node.getNodeName());
-				System.out.println(eleMeta.print());
+//				System.out.println(node.getNodeName());
+//				System.out.println(eleMeta.print());
 				
 			}
 		}else if(node.getNodeType()==Node.ATTRIBUTE_NODE)
@@ -73,8 +72,8 @@ public class TagParser {
 			eleMeta.setType("attr");
 			eleMeta.setProname(node.getNodeName());
 			eleBlock.getEleMetas().add(eleMeta);
-			System.out.println(node.getNodeName());
-			System.out.println(eleMeta.print());
+//			System.out.println(node.getNodeName());
+//			System.out.println(eleMeta.print());
 		}else if(node.getNodeType()==Node.ELEMENT_NODE){
 			if(node.getNodeName().trim().equalsIgnoreCase("list"))
 			{
@@ -91,8 +90,8 @@ public class TagParser {
 				}
 				eleBlock.getSubBlocks().add(subEleBlock);
 			}else{
-				System.out.println(node.getNodeName());
-				System.out.println(eleMeta.print());
+//				System.out.println(node.getNodeName());
+//				System.out.println(eleMeta.print());
 				//设置路径
 				String parent=eleMeta.getHtmlpath();
 				String curr=node.getNodeName().trim();
@@ -105,7 +104,7 @@ public class TagParser {
 				} 
 				eleMeta.setHtmlpath(parent+"/"+curr);
 				NodeList nodeList=node.getChildNodes();
-				for(int i=0;i!=nodeList.getLength();++i)
+				for(int i=0; nodeList !=null && i!=nodeList.getLength();++i)
 				{
 					EleMeta ele=new EleMeta();
 					ele.clone(eleMeta);
@@ -124,12 +123,12 @@ public class TagParser {
 			}
 		}
 	}
-	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
+/*	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
 		 DocumentBuilder documentBuilder= builderFactory.newDocumentBuilder();
 		 Document document=documentBuilder.parse(TagParser.class.getResourceAsStream("/htmlbean/autohomeImg.xml"));
 		 EleBlock eleBlock=new EleBlock();
 		xmlparser(document.getChildNodes().item(0),eleBlock,new EleMeta());
 		System.out.println(eleBlock.getEleMetas().size());
-	}
+	}*/
 }

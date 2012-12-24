@@ -1,1 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<html-1>
+	<head-1>
+		<title>#{title}</title>
+	</head-1>
+	<body>
+		<div>
+			<div>
+				#{text}
+			</div>
+			<div>
+				<a href='#{href}' >
+					<list>
+						<strong>${fist1 #{regx1}last1 }</strong>
+						<strong>${fist2 #{regx2}last2}</strong>
+						<strong>${fist3 #{regx3}last3}</strong>
+					</list>
+				</a>
+			</div>
+		</div>
+	</body>
+</html-1>

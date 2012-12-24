@@ -45,7 +45,7 @@ public class XpathDemo {
         String bPath = "//HTML//BODY//DIV[2]";
  
         String yyt = "http://www.yinyuetai.com/mv/all?page=1";
-        String yPath = "//HTML//BODY//DIV[5]//DIV//DIV[2]//DIV[2]//DIV[3]/UL[1]/LI[1]/DIV[1]/A[1]/HREF";
+        String yPath = "//HTML//BODY//DIV[5]//DIV//DIV[2]";
  
         // 将指定的页面解析为DOM文档
         Document doc = getDocument(yyt);
@@ -54,7 +54,7 @@ public class XpathDemo {
         System.out.println("符合条件的结点个数为：" + list.getLength());
         for (int i = 0; i < list.getLength(); i++) {
             System.out.println("获取的节点属性为："
-                    + list.item(i).getNodeValue());
+                    + list.item(i).getClass());
         }
     }
 }

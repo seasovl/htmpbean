@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-	<bean id="autohome2" htmlbean="htmlbean/autohomeDealer.xml" regx-url="http://dealer.autohome.com.cn/3969/info.html"></bean>
+	<bean id="autohomedealer" htmlbean="htmlbean/autohomeDealer.xml" regx-url="http://dealer.autohome.com.cn/\\d+/\\w+_\\d+.html"></bean>
 	<bean id="autohome3" htmlbean="htmlbean/autohomeImg.xml" regx-url="http://car.autohome.com.cn/photo/series/10887/1/1667877.html"></bean>
 	<bean id="autohome4" htmlbean="htmlbean/autohomePrice.xml" regx-url="http://dealer.autohome.com.cn/3969/b_770.html"></bean>
-	<include file="conf/htmlconf.xml"></include>
+<!-- 	<include file="conf/htmlconf.xml"></include> -->
 </beans>

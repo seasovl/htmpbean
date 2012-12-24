@@ -4,10 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ibatisconf.mapper">
 	<select id="selectRegexpUrl"  parameterType="String" resultType="HashMap">
-		select  id,htmlbean,regxurl  from regexpUrl where  REGEXP_MATCHES( #{str},regxurl)
+		select  id,htmlbean,regxurl from regexpUrl where  REGEXP_MATCHES( #{str},regxurl)
 	</select>
 	<insert id="insertRegexpUrl" parameterType="HashMap" >
 		insert into regexpUrl values(#{id},#{htmlbean},#{regxurl})
 	</insert>
-	
 </mapper>

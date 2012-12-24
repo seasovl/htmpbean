@@ -6,8 +6,8 @@ public class EleMeta implements Serializable{
 	private static final long serialVersionUID = 529153460887330822L;
 	private String htmlpath="";//html 树路径
 	private String jname; //json key值
-	private String proname="txt";//属性名 attr /  txt
-	private String type; //类型 信息是 属性 或者 文本
+	private String proname;//属性名
+	private String type="txt"; //类型信息是 属性 或者 文本  attr /  txt
 	
 	
 	private Boolean isregxp=false;//是否使用正则匹配

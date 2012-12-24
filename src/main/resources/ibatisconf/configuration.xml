@@ -17,5 +17,4 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<mapper resource="ibatisconf/mapper/regexp.xml" />
 	</mappers>
-
 </configuration>

@@ -39,8 +39,7 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- enable component scanning (beware that this does not enable mapper scanning!) -->    
-    <context:component-scan base-package="org.mybatis.jpetstore.service" />
+
 
     <!-- enable autowire -->
     <context:annotation-config />
