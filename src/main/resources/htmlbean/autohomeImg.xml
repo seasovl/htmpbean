@@ -20,15 +20,3 @@
 		</div>
 	</body>
 </html-1>
-<!-- //1 解析获得路径信息
-/html/head/title
-/html/body/div/div
-/html/body/div/div[2]/a/strong
-//2 获得key 
-//3 获得属性类型 文本 或者属性
-//4 获得属性名
-//5 获得正则字符
-
-
-
- -->

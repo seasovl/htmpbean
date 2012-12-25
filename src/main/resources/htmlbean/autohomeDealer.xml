@@ -1,115 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head><title>#{title}</title>
-</head>
-<body>
-    <!--迷你导航开始-->
-    <div class="mini_nav">
-        <div class="logo">
-            <a target="_blank" href="/">
-                <img src="http://x.autoimg.cn/dealer/minisite/images/dealer_logo.png" width="195" height="25"
-                    alt="车商汇logo" /></a></div>
-        <div id="login" class="login_area">
-        </div>
-    </div>
-    <!--迷你导航结束-->
-    <!--头部开始-->
-    <div class="header">
-        <div class="banner_area" >
-            <div class="logopic">
-                <img alt="一汽丰田" width="75" height="75" src="http://www.autoimg.cn/logo/fct/75/129563795136986250.jpg" /><img alt="丰田(进口)" width="75" height="75" src="http://www.autoimg.cn/logo/fct/75/129563992795267500.jpg" /></div>
-            <h1>北京凯百隆丰田汽车销售服务有限公司</h1>
-            
-        </div>
-        <div class="phone_bar">
-            咨询电话：<span class="fontred"><span class="dealer_400_wrap"><span class="dealer_400_big" style="color:#D60000;font-family:Arial;font-weight:700;">400-868-6259</span></span></span>
-            
-        </div>
-        <div class="nav">
-            <a href="javascript:void(0);" name="navAnchor"></a>
-            <ul id="GlobalNav">
-                <li><a href="/3969/">首 页</a></li>
-                <li><a href="/3969/price.html">车型报价</a></li>
-                <li><a href="/3969/pic.html">车型图片</a></li>
-                <li><a href="/3969/newslist.html">促销信息</a></li>
-                <li><a href="/3969/order.html?siteId=11">询价预约</a></li>
-                
-                <li><a href="/3969/maintain.html">保养服务</a></li>
-                
-                <li><a href="/3969/info.html">公司介绍</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="ad_auto_jz_01" style="display: none">
-    </div>
-    <script type="text/javascript" src="http://x.autoimg.cn/dealer/minisite/js/20121220A/Header.js?20121210F"></script>
-    <!--头部结束-->
-    
-    <div class="content">
-        <div class="left_side">
-            
-<div class="section">
-    <h3 class="tit2">
-        主营品牌</h3>
-    <dl class="brand_tree" id="dlFactory"><dt id="dt40" class=""><span id="spImage40" class="minus" onclick="showInfo(40);"></span><a id="a40" href="javascript:showFactory(40,0);">一汽丰田</a></dt><dd><ul id="ul40"><li id="li40-770" class="cur" ><a href="javascript:showSeries(40,770,0);">丰田RAV4</a></li><li id="li40-109"><a href="javascript:showSeries(40,109,0);">花冠</a></li><li id="li40-882"><a href="javascript:showSeries(40,882,0);">皇冠</a></li><li id="li40-526"><a href="javascript:showSeries(40,526,0);">卡罗拉</a></li><li id="li40-45"><a href="javascript:showSeries(40,45,0);">兰德酷路泽</a></li><li id="li40-46"><a href="javascript:showSeries(40,46,0);">普拉多</a></li><li id="li40-371"><a href="javascript:showSeries(40,371,0);">普锐斯</a></li><li id="li40-375"><a href="javascript:showSeries(40,375,0);">锐志</a></li><li id="li40-111"><a href="javascript:showSeries(40,111,0);">威驰</a></li></ul></dd><dt id="dt63" class=""><span id="spImage63" class="minus" onclick="showInfo(63);"></span><a id="a63" href="javascript:showFactory(63,0);">丰田(进口)</a></dt><dd><ul id="ul63"><li id="li63-2607"><a href="javascript:showSeries(63,2607,0);">HIACE</a></li><li id="li63-334"><a href="javascript:showSeries(63,334,0);">普拉多(进口)</a></li><li id="li63-107"><a href="javascript:showSeries(63,107,0);">普瑞维亚</a></li></ul></dd></dl>
-</div>
-
-
-            
-  <div class="section">
-<h3 class="tit2">丰田RAV4 促销信息</h3><dl class="new_dl"><dt><a target="_blank" href="/3969/news_2358645.html">&nbsp;纯爷们RAV4圣诞狂欢价&nbsp;随时等...</a></dt><dd>12-24</dd><dt><a target="_blank" href="/3969/news_2301269.html">&nbsp;越野骑士RAV4疯狂钜惠&nbsp;现车火...</a></dt><dd>12-17</dd><dt><a target="_blank" href="/3969/news_2240366.html">&nbsp;RAV4年底疯狂促销车型&nbsp;购车现...</a></dt><dd>12-10</dd><dt><a target="_blank" href="/3969/news_2184645.html">&nbsp;凯百隆RAV4年底促销&nbsp;重重大礼...</a></dt><dd>12-03</dd><dt><a target="_blank" href="/3969/news_2126899.html">&nbsp;RAV4感恩放送&nbsp;购车尊享现金钜...</a></dt><dd>11-26</dd></dl>
-</div>
-
-        </div>
-        <div class="right_side">
-            <div class="section">
-                <h3 class="tit1">
-                    <span class="tname">车型报价</span> <span class="tcarpic"><a href="/3969/pic_770.html">
-                        车型图片</a></span> <span class="trgrey">报价仅供参考，购买时请以商家实际销售价格为准！</span>
-                </h3>
-                <div class="pricar_area ">
-                    <h4 class="tit_prsub" style="position: relative;">
-                        一汽丰田
-                        <span style="position: absolute; top: 0; right: 10px;">咨询电话：<span class="fontred"><span class="dealer_400_wrap"><span class="dealer_400_big" style="color:#D60000;font-family:Arial;font-weight:700;">400-868-6259</span><img class="dealer_400_icon" style="width:14px;height:14px;margin-left:5px;float:none; margin-right:0;padding-bottom:4px;margin-bottom:0; vertical-align:middle;border:0" title="汽车之家认证电话，请您放心拨打！" src="http://x.autoimg.cn/dealer/minisite/images/icon/check.gif?20120717A"/><img style="padding-bottom: 4px;float:none; margin-right:0; vertical-align: middle; border: 0;margin-bottom:0; margin-left: 5px;" title="24小时恭候致电！" src="http://x.autoimg.cn/dealer/minisite/images/icon/24h.gif?20120717A"></span></span>
-                        </span>
-                    </h4>
-                    <div class="t_bar">
-                        <span class="fl">车系</span><span class="fr">本店价</span></div>
-                    <ul class="carinfo_ul">
-                        <li class="last_li">
-                            <dl class="intro_dl">
-                                <dd class="fl">
-                                    <a href="/3969/pic_770.html">
-                                        <img width="120" height="90" src='http://www.autoimg.cn/upload/spec/10668/s_201207122008254973686.jpg' /></a></dd>
-                                <dt>
-                                    <a href="http://www.autohome.com.cn/770/" target="_blank">丰田RAV4</a></dt>
-                                <dd>
-                                    品牌：丰田</dd>
-                                <dd>
-                                    车身结构：<span title='SUV '>SUV </span></dd>
-                                <dd>
-                                    排量：<span title='2.0L 2.4L '>2.0L 2.4L </span></dd>
-                                <dd>
-                                    变 速 箱：手动 自动 </dd>
-                                <dd class="wall tcolor" id="ddColor">
-                                </dd>
-                                <dd class="wall">
-                                    <a href="http://www.autohome.com.cn/770/options.html"
-                                        target="_blank">[参数配置]</a> <a target="_blank" href="/3969/pic_770.html">
-                                            [图片]</a>
-                                    <a href='http://car.autohome.com.cn/baoyang/list_1_3_40_770_0.html' target='_blank'>[保养]</a></dd>
-                            </dl>
-                            <span class="shop_price"><span class="font14bred">
-                                18.78-26.98万</span></span>
-                            <table cellpadding="0" cellspacing="0" border="0" class="pri_tab"><tr><th width="2%">&nbsp;</th><th width="36%" align="left">2.0升 150马力 </th><th width="20%">本店价</th><th width="16%">厂商指导价</th><th width="14%">咨询</th><th width="10%" align="right">报价时间</th><th width="2%">&nbsp;</th></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10668.html" target="_blank">2011款 2.0L 手动经典版</a>&nbsp;<img class='ic_picxs' title='限时促销'  src='http://x.autoimg.cn/dealer/minisite/images/ic_xscx.gif'></td><td><div class='td_cprdel'>18.78万</div><a class='fontred linkred' target='_blank' href='/3969/spec_10668.html' style='font-weight: bold;'>16.88万</a></td><td>18.78万</td><td><a target="_blank" href="/3969/order_770_10668.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10668.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10669.html" target="_blank">2011款 2.0L 自动经典版</a>&nbsp;<img class='ic_picxs' title='限时促销'  src='http://x.autoimg.cn/dealer/minisite/images/ic_xscx.gif'></td><td><div class='td_cprdel'>19.78万</div><a class='fontred linkred' target='_blank' href='/3969/spec_10669.html' style='font-weight: bold;'>17.88万</a></td><td>19.78万</td><td><a target="_blank" href="/3969/order_770_10669.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10669.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10670.html" target="_blank">2011款 2.0L 手动四驱版</a></td><td><a class="fontred linkred" href="/3969/spec_10670.html" target="_blank">20.78万</a></td><td>20.78万</td><td><a target="_blank" href="/3969/order_770_10670.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10670.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_12174.html" target="_blank">2012款 2.0L 手动四驱炫装版</a></td><td><a class="fontred linkred" href="/3969/spec_12174.html" target="_blank">21.18万</a></td><td>21.18万</td><td><a target="_blank" href="/3969/order_770_12174.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_12174.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_12178.html" target="_blank">2012款 2.0L 自动四驱炫装版</a></td><td><a class="fontred linkred" href="/3969/spec_12178.html" target="_blank">22.18万</a></td><td>22.18万</td><td><a target="_blank" href="/3969/order_770_12178.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_12178.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10672.html" target="_blank">2011款 2.0L 手动豪华版</a></td><td><a class="fontred linkred" href="/3969/spec_10672.html" target="_blank">21.98万</a></td><td>21.98万</td><td><a target="_blank" href="/3969/order_770_10672.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10672.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr class="bo_no"><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10673.html" target="_blank">2011款 2.0L 自动豪华版</a>&nbsp;<img class='ic_picxs' title='限时促销'  src='http://x.autoimg.cn/dealer/minisite/images/ic_xscx.gif'></td><td><div class='td_cprdel'>22.98万</div><a class='fontred linkred' target='_blank' href='/3969/spec_10673.html' style='font-weight: bold;'>20.88万</a></td><td>22.98万</td><td><a target="_blank" href="/3969/order_770_10673.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10673.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr><th width="2%">&nbsp;</th><th width="36%" align="left">2.4升 170马力 </th><th width="20%">本店价</th><th width="16%">厂商指导价</th><th width="14%">咨询</th><th width="10%" align="right">报价时间</th><th width="2%">&nbsp;</th></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10674.html" target="_blank">2011款 2.4L 手动四驱豪华版</a></td><td><a class="fontred linkred" href="/3969/spec_10674.html" target="_blank">22.98万</a></td><td>22.98万</td><td><a target="_blank" href="/3969/order_770_10674.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10674.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10675.html" target="_blank">2011款 2.4L 自动四驱豪华版</a>&nbsp;<img class='ic_picxs' title='限时促销'  src='http://x.autoimg.cn/dealer/minisite/images/ic_xscx.gif'></td><td><div class='td_cprdel'>23.98万</div><a class='fontred linkred' target='_blank' href='/3969/spec_10675.html' style='font-weight: bold;'>21.48万</a></td><td>23.98万</td><td><a target="_blank" href="/3969/order_770_10675.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10675.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_12179.html" target="_blank">2012款 2.4L 手动四驱豪华炫装版</a></td><td><a class="fontred linkred" href="/3969/spec_12179.html" target="_blank">23.38万</a></td><td>23.38万</td><td><a target="_blank" href="/3969/order_770_12179.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_12179.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_12180.html" target="_blank">2012款 2.4L 自动四驱豪华炫装版</a>&nbsp;<img class='ic_picxs' title='限时促销'  src='http://x.autoimg.cn/dealer/minisite/images/ic_xscx.gif'></td><td><div class='td_cprdel'>24.38万</div><a class='fontred linkred' target='_blank' href='/3969/spec_12180.html' style='font-weight: bold;'>21.88万</a></td><td>24.38万</td><td><a target="_blank" href="/3969/order_770_12180.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_12180.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10676.html" target="_blank">2011款 2.4L 手动四驱至臻版</a></td><td><a class="fontred linkred" href="/3969/spec_10676.html" target="_blank">24.98万</a></td><td>24.98万</td><td><a target="_blank" href="/3969/order_770_10676.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10676.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr ><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10677.html" target="_blank">2011款 2.4L 自动四驱至臻版</a></td><td><a class="fontred linkred" href="/3969/spec_10677.html" target="_blank">25.98万</a></td><td>25.98万</td><td><a target="_blank" href="/3969/order_770_10677.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10677.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr><tr class="bo_no"><td class="nobo_td">&nbsp;</td><td align="left"><a href="/3969/spec_10679.html" target="_blank">2011款 2.4L 自动四驱至臻导航版</a></td><td><a class="fontred linkred" href="/3969/spec_10679.html" target="_blank">26.98万</a></td><td>26.98万</td><td><a target="_blank" href="/3969/order_770_10679.html?siteId=5&pvareaid=100929">询价>></a> <a target="_blank" href="/3969/drive_770_10679.html">试驾>></a></td><td align="right">12月24日</td><td class="nobo_td">&nbsp;</td></tr></table>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-</body>
+<html>
+	<head>
+		<title>#{title}</title>
+	</head>
+	<body>
+		<div>
+			<div>
+				<h1>#{company}</h1>
+				<div>
+					<dl>
+						<dd>
+							<div>#{band}</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div>
+				<span>
+					<span>
+						<span>#{tel}</span>
+					</span>
+				</span>
+			</div>
+		</div>
+		<div>
+			<div>
+				<div>
+					<ul>
+						<li-1>${公司名称：#{company1}}</li-1>
+						<li-2>${地址：#{addr}}</li-2>
+						<li-4>${传真：#{tel1}}</li-4>
+						<li-5>${公司网址：#{companyUri}}</li-5>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
+<!-- 汽车之家 经销商数据 -->

@@ -61,10 +61,7 @@ public class TagParser {
 		{
 			if(node.getNodeValue()!=null && ! node.getNodeValue().trim().equals("") &&  pattern.matcher( node.getNodeValue() ).find()){
 				getJname(node, eleMeta);
-				eleBlock.getEleMetas().add(eleMeta);
-//				System.out.println(node.getNodeName());
-//				System.out.println(eleMeta.print());
-				
+				eleBlock.getEleMetas().add(eleMeta);	
 			}
 		}else if(node.getNodeType()==Node.ATTRIBUTE_NODE)
 		{
@@ -72,8 +69,6 @@ public class TagParser {
 			eleMeta.setType("attr");
 			eleMeta.setProname(node.getNodeName());
 			eleBlock.getEleMetas().add(eleMeta);
-//			System.out.println(node.getNodeName());
-//			System.out.println(eleMeta.print());
 		}else if(node.getNodeType()==Node.ELEMENT_NODE){
 			if(node.getNodeName().trim().equalsIgnoreCase("list"))
 			{
@@ -90,8 +85,6 @@ public class TagParser {
 				}
 				eleBlock.getSubBlocks().add(subEleBlock);
 			}else{
-//				System.out.println(node.getNodeName());
-//				System.out.println(eleMeta.print());
 				//设置路径
 				String parent=eleMeta.getHtmlpath();
 				String curr=node.getNodeName().trim();
@@ -100,7 +93,7 @@ public class TagParser {
 					curr=curr.replace("-", "[");
 					curr=curr.trim()+"]";
 				}else{
-					curr+="[1]";
+				//	curr+="[1]";
 				} 
 				eleMeta.setHtmlpath(parent+"/"+curr);
 				NodeList nodeList=node.getChildNodes();

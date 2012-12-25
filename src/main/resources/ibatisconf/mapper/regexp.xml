@@ -9,4 +9,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertRegexpUrl" parameterType="HashMap" >
 		insert into regexpUrl values(#{id},#{htmlbean},#{regxurl})
 	</insert>
+	<insert id="insertRegexpUrlByMap" parameterType="HashMap">
+	</insert>
 </mapper>

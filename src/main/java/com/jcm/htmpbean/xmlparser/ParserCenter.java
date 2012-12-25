@@ -1,6 +1,7 @@
 package com.jcm.htmpbean.xmlparser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,11 +51,12 @@ public class ParserCenter {
 				Node htmlbean=attributeMap.getNamedItem("htmlbean");
 				Map<String,String> map=new HashMap<String,String>();
 				map.put("id", id.getNodeValue());
-				map.put("regx-url", regxurl.getNodeValue());
+				map.put("regxurl", regxurl.getNodeValue());
 				map.put("htmlbean", htmlbean.getNodeValue());
 				ConfPersistence confPersistence=new ConfPersistence();
 				SqlSession session=confPersistence.openSession();
 				int ins=session.insert("insertRegexpUrl", map);
+				session.commit();
 				session.close();
 				EleBlock eleBlock= TagParser.parser(new InputSource(ParserCenter.class.getResourceAsStream("/"+map.get("htmlbean"))));
 				mapEle.put(map.get("id"), eleBlock);
@@ -78,24 +80,74 @@ public class ParserCenter {
 			e.printStackTrace();
 		}
 	}
-	public List<JSONObject> parser(String url)
+
+	public List<JSONObject> parserJSON(InputSource inputSource,String url) {
+		List<Map<String, String>> mapList = parserMap(inputSource,url);
+		List<JSONObject> jsonList = new ArrayList<JSONObject>();
+		for (Map<String, String> map : mapList) {
+			JSONObject jsonObject = new JSONObject(map);
+			jsonList.add(jsonObject);
+		}
+		return jsonList;
+	}
+	
+	public List<JSONObject> parserJSON(String url) {
+		List<Map<String, String>> mapList = parserMap(url);
+		List<JSONObject> jsonList = new ArrayList<JSONObject>();
+		for (Map<String, String> map : mapList) {
+			JSONObject jsonObject = new JSONObject(map);
+			jsonList.add(jsonObject);
+		}
+		return jsonList;
+	}
+	public List<Map<String,String>> parserMap(InputSource inputSource,String url)
 	{
-		 Document document= getDocument( url);
+		 Document document= getDocument( inputSource );
 		 ConfPersistence confPersistence=new ConfPersistence();
 		 SqlSession session= confPersistence.openSession();
 		 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
 		 if(list.size()>0)
 		 {
 			 Map<String,String> map= list.get(0);
-			 return htmlParser.parserHtml(mapEle.get(map.get("id")), document);
+			 System.out.println(map.get("ID"));
+			 return htmlParser.parserHtml(mapEle.get(map.get("ID")), document);
+		 }
+		 session.close();
+		return null;
+	}
+	public List<Map<String,String>> parserMap(String url)
+	{
+		 Document document= getDocument( url );
+		 ConfPersistence confPersistence=new ConfPersistence();
+		 SqlSession session= confPersistence.openSession();
+		 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
+		 if(list.size()>0)
+		 {
+			 Map<String,String> map= list.get(0);
+			 System.out.println(map.get("ID"));
+			 return htmlParser.parserHtml(mapEle.get(map.get("ID")), document);
 		 }
 		 session.close();
 		return null;
 	}
 	 // 通过url，将相应的html解析为DOM文档
+    public  Document getDocument(InputSource inputSource) {
+        DOMParser parser = new DOMParser();
+        try {
+        	parser.setFeature("http://xml.org/sax/features/namespaces", false);
+            parser.parse(inputSource);
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Document doc = parser.getDocument();
+        return doc;
+    }
     public  Document getDocument(String url) {
         DOMParser parser = new DOMParser();
         try {
+        	parser.setFeature("http://xml.org/sax/features/namespaces", false);
             parser.parse(url);
         } catch (SAXException e) {
             e.printStackTrace();
@@ -105,9 +157,15 @@ public class ParserCenter {
         Document doc = parser.getDocument();
         return doc;
     }
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		ParserCenter center=new ParserCenter();
+		long c=System.currentTimeMillis();
 		center.load(new InputSource( ParserCenter.class.getResourceAsStream("/htmlconf.xml")));
-		List<JSONObject> list=center.parser("http://dealer.autohome.com.cn/3969/b_770.html");
+		System.out.println(System.currentTimeMillis()-c);
+		List<JSONObject> list=center.parserJSON("http://dealer.autohome.com.cn/1906/contact.html");
+		for(JSONObject jsonObject:list)
+		{
+			System.out.println(jsonObject.toString());
+		}
 	}
 }
