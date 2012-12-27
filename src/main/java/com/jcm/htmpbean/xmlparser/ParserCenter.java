@@ -32,7 +32,7 @@ public class ParserCenter {
 		center=new ParserCenter();
 	}
 	private ParserCenter(){}
-	public ParserCenter getInstance()
+	public static  ParserCenter getInstance()
 	{
 		return center;
 	}
@@ -124,7 +124,7 @@ public class ParserCenter {
 		 if(list.size()>0)
 		 {
 			 Map<String,String> map= list.get(0);
-			 System.out.println(map.get("ID"));
+			 //System.out.println(map.get("ID"));
 			 return htmlParser.parserHtml(mapEle.get(map.get("ID")), document);
 		 }
 		 session.close();

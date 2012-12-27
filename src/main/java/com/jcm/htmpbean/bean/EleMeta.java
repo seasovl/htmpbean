@@ -13,6 +13,10 @@ public class EleMeta implements Serializable{
 	private Boolean isregxp=false;//是否使用正则匹配
 	private String fistregstr;//首正则字符
 	private String lastregstr;//末正则字符
+	
+	private Boolean equals=false;
+	private String equalsname;
+	private String equalsvalue;
 	public String getHtmlpath() {
 		return htmlpath;
 	}
@@ -57,6 +61,25 @@ public class EleMeta implements Serializable{
 	public void setIsregxp(Boolean isregxp) {
 		this.isregxp = isregxp;
 	}
+	
+	public Boolean getEquals() {
+		return equals;
+	}
+	public void setEquals(Boolean equals) {
+		this.equals = equals;
+	}
+	public String getEqualsname() {
+		return equalsname;
+	}
+	public void setEqualsname(String equalsname) {
+		this.equalsname = equalsname;
+	}
+	public String getEqualsvalue() {
+		return equalsvalue;
+	}
+	public void setEqualsvalue(String equalsvalue) {
+		this.equalsvalue = equalsvalue;
+	}
 	public void clone(EleMeta eleMeta) {
 		this.htmlpath=eleMeta.htmlpath;
 		this.jname=eleMeta.jname;
@@ -65,6 +88,9 @@ public class EleMeta implements Serializable{
 		this.lastregstr=eleMeta.lastregstr;
 		this.isregxp=eleMeta.isregxp;
 		this.type=eleMeta.type;
+		this.equals=eleMeta.equals;
+		this.equalsname=eleMeta.equalsname;
+		this.equalsvalue=eleMeta.equalsvalue;
 	}
 	public String print()
 	{

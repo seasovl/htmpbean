@@ -48,16 +48,17 @@ public class XpathDemo {
         
         String art = "http://car.autohome.com.cn/photo/series-11619-2120-1-1746243.html";
         String artPath = "/HTML/BODY/DIV/DIV/UL/LI/A.RED";
-        
+        String art1 = "http://dealer.autohome.com.cn/3966/contact.html";
+        String art1Path = "/HTML/BODY/SCRIPT";
         // 将指定的页面解析为DOM文档
-        Document doc = getDocument(art);
+        Document doc = getDocument(art1);
         // 根据xpath获得指定的节点
         System.out.println(doc.getFirstChild().getNodeName());
-        NodeList list = getExactNode(doc, artPath);
+        NodeList list = getExactNode(doc, art1Path);
         System.out.println("符合条件的结点个数为：" + list.getLength());
         for (int i = 0; i < list.getLength(); i++) {
             System.out.println("获取的节点属性为："
-                    + list.item(i).getClass());
+                    + list.item(i).getTextContent());
         }
     }
 }

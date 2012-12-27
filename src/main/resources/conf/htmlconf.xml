@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans>
-	<bean id="autohome1"  htmlbean="htmlbean/autohomeDealer.xml" regx-url="http://dealer.autohome.com.cn/3969/info.html"></bean>
-</beans>
