@@ -24,7 +24,7 @@ public class HtmlParser {
 		analysisHtml(eleBlock,doc,mapList);
 		return mapList;
 	}
-	private void analysisHtml(EleBlock eleBlock,Document doc,List<Map<String, String>> mapList)
+	private synchronized void analysisHtml(EleBlock eleBlock,Document doc,List<Map<String, String>> mapList)
 	{
 		List<EleBlock> eleBlocks=eleBlock.getSubBlocks();
 		if(eleBlocks.size()>0)
@@ -88,7 +88,7 @@ public class HtmlParser {
 						mapObj.put(eleMeta.getJname(), txtValue);
 					}
 				} catch (Exception e1) {
-						System.err.println("块中存在大于第一个元素个数的节点："+ eleMeta.getJname()+".size: "+nodeList.getLength());
+						System.err.println("块中存在大于第一个元素个数的节点："+ eleMeta.getJname()+".size: "+nodeList.getLength()+"    导致异常.");
 						e1.printStackTrace();
 				}
 			}
@@ -159,9 +159,9 @@ public class HtmlParser {
 		if(eleMeta.getIsregxp()){
 			int beginIndex=-1;
 			int endIndex=-1;
-			if(eleMeta.getFistregstr()!=null && ! eleMeta.getFistregstr().equals(""))
+			if(eleMeta.getFistregstr()!=null)
 			{
-				Pattern pattern=Pattern.compile(eleMeta.getFistregstr());
+				Pattern pattern=eleMeta.getFistregstr();
 				 Matcher matcher= pattern.matcher(str);
 				 if(matcher.find())
 				 {
@@ -170,9 +170,9 @@ public class HtmlParser {
 					beginIndex=index+subStr.length();
 				 }
 			}
-			if(eleMeta.getLastregstr()!=null && ! eleMeta.getLastregstr().equals(""))
+			if(eleMeta.getLastregstr()!=null)
 			{
-				Pattern pattern=Pattern.compile(eleMeta.getLastregstr());
+				Pattern pattern=eleMeta.getLastregstr();
 				 Matcher matcher= pattern.matcher(str);
 				 if(matcher.find())
 				 {
@@ -197,10 +197,12 @@ public class HtmlParser {
 		return str;
 	}
     // 通过XPath定位具体的节点
-    private static NodeList getExactNode(Document doc, String xp) {
+    private  synchronized NodeList getExactNode(Document doc, String xp) {
         NodeList list = null;
         try {
+ 
             list = XPathAPI.selectNodeList(doc, xp);
+
         } catch (TransformerException e) {
             e.printStackTrace();
         }

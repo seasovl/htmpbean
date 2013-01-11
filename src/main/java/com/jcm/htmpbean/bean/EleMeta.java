@@ -1,6 +1,7 @@
 package com.jcm.htmpbean.bean;
 
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 public class EleMeta implements Serializable{
 	private static final long serialVersionUID = 529153460887330822L;
@@ -11,8 +12,8 @@ public class EleMeta implements Serializable{
 	
 	
 	private Boolean isregxp=false;//是否使用正则匹配
-	private String fistregstr;//首正则字符
-	private String lastregstr;//末正则字符
+	private Pattern fistregstr;//首正则字符
+	private Pattern lastregstr;//末正则字符
 	
 	private Boolean equals=false;
 	private String equalsname;
@@ -42,19 +43,20 @@ public class EleMeta implements Serializable{
 		this.proname = proname;
 	}
 
-	public String getFistregstr() {
+	
+	
+	public Pattern getFistregstr() {
 		return fistregstr;
 	}
-	public void setFistregstr(String fistregstr) {
+	public void setFistregstr(Pattern fistregstr) {
 		this.fistregstr = fistregstr;
 	}
-	public String getLastregstr() {
+	public Pattern getLastregstr() {
 		return lastregstr;
 	}
-	public void setLastregstr(String lastregstr) {
+	public void setLastregstr(Pattern lastregstr) {
 		this.lastregstr = lastregstr;
 	}
-	
 	public Boolean getIsregxp() {
 		return isregxp;
 	}

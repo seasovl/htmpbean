@@ -1,15 +1,21 @@
 package com.jcm.htmpbean.xmlparser;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.xerces.dom.AttributeMap;
 import org.cyberneko.html.parsers.DOMParser;
 import org.json.JSONObject;
@@ -20,7 +26,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.jcm.htmpbean.bean.EleBlock;
-import com.jcm.htmpbean.dao.ConfPersistence;
 import com.jcm.htmpbean.htmlparser.HtmlParser;
 import com.jcm.htmpbean.tagparser.TagParser;
 
@@ -28,6 +33,7 @@ public class ParserCenter {
 	private  static ParserCenter center;
 	private  static HtmlParser htmlParser=new HtmlParser();
 	private static Map<String,EleBlock> mapEle=new HashMap<String, EleBlock>();
+	private static Map<String,Pattern> regexp=new HashMap<String, Pattern>();
 	static {
 		center=new ParserCenter();
 	}
@@ -36,7 +42,7 @@ public class ParserCenter {
 	{
 		return center;
 	}
-	private void loadXMLInfo(Node node)
+	private  void loadXMLInfo(Node node)
 	{
 		NodeList nodeList= node.getChildNodes();
 		for(int i=0;nodeList!=null&&i!=nodeList.getLength();++i)
@@ -49,17 +55,18 @@ public class ParserCenter {
 				Node id=attributeMap.getNamedItem("id");
 				Node regxurl=attributeMap.getNamedItem("regx-url");
 				Node htmlbean=attributeMap.getNamedItem("htmlbean");
-				Map<String,String> map=new HashMap<String,String>();
+	/*			Map<String,String> map=new HashMap<String,String>();
 				map.put("id", id.getNodeValue());
 				map.put("regxurl", regxurl.getNodeValue());
 				map.put("htmlbean", htmlbean.getNodeValue());
-				ConfPersistence confPersistence=new ConfPersistence();
-				SqlSession session=confPersistence.openSession();
+				SqlSession session=ConfPersistence.openSession();
 				int ins=session.insert("insertRegexpUrl", map);
-				session.commit();
-				session.close();
-				EleBlock eleBlock= TagParser.parser(new InputSource(ParserCenter.class.getResourceAsStream("/"+map.get("htmlbean"))));
-				mapEle.put(map.get("id"), eleBlock);
+				session.commit();*/
+				regexp.put(id.getNodeValue(),Pattern.compile(regxurl.getNodeValue()));
+				
+				EleBlock eleBlock= TagParser.parser(new InputSource(ParserCenter.class.getResourceAsStream("/"+htmlbean.getNodeValue())));
+				mapEle.put(id.getNodeValue(), eleBlock);
+				
 			}else if(nodelis.getNodeName().trim().equalsIgnoreCase("include")){
 				AttributeMap attributeMap=(AttributeMap) nodelis.getAttributes();
 				Node file=attributeMap.getNamedItem("file");
@@ -67,8 +74,35 @@ public class ParserCenter {
 			}
 		}
 	}
-	public void load(InputSource stream)
+	public  String findRegexpID(String url)
+	{
+		if(regexp!=null)
+		{
+			Set<Entry<String, Pattern>> setentry=regexp.entrySet();
+			Iterator<Entry<String, Pattern>> ientry= setentry.iterator();
+			while(ientry.hasNext())
+			{
+				Entry<String, Pattern> entry=ientry.next();
+				Pattern pattern=entry.getValue();
+				 Matcher matcher= pattern.matcher(url);
+				 if(matcher.find())
+				 {
+					 return entry.getKey();
+				 }
+			}
+		}
+		return null;
+	}
+	public synchronized void load(InputSource stream)
 	{	
+		try {
+			PrintWriter printWriter=new PrintWriter("E:/log.txt");
+			printWriter.write(Thread.currentThread().getName());
+			printWriter.flush();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder;
 		try {
@@ -103,31 +137,29 @@ public class ParserCenter {
 	public List<Map<String,String>> parserMap(InputSource inputSource,String url)
 	{
 		 Document document= getDocument( inputSource );
-		 ConfPersistence confPersistence=new ConfPersistence();
-		 SqlSession session= confPersistence.openSession();
-		 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
-		 if(list.size()>0)
+//		 SqlSession session= ConfPersistence.openSession();
+//		 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
+		 String id=findRegexpID(url);
+		 if(id!=null)
 		 {
-			 Map<String,String> map= list.get(0);
-			 System.out.println(map.get("ID"));
-			 return htmlParser.parserHtml(mapEle.get(map.get("ID")), document);
+		//	 Map<String,String> map= list.get(0);
+			 System.out.println(id);
+			 return htmlParser.parserHtml(mapEle.get(id), document);
 		 }
-		 session.close();
 		return null;
 	}
 	public List<Map<String,String>> parserMap(String url)
 	{
 		 Document document= getDocument( url );
-		 ConfPersistence confPersistence=new ConfPersistence();
-		 SqlSession session= confPersistence.openSession();
-		 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
-		 if(list.size()>0)
+	//	 SqlSession session= ConfPersistence.openSession();
+	//	 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
+		 String id=findRegexpID(url);
+		 if(id!=null)
 		 {
-			 Map<String,String> map= list.get(0);
-			 //System.out.println(map.get("ID"));
-			 return htmlParser.parserHtml(mapEle.get(map.get("ID")), document);
+			 //Map<String,String> map= list.get(0);
+			 System.out.println(id);
+			 return htmlParser.parserHtml(mapEle.get(id), document);
 		 }
-		 session.close();
 		return null;
 	}
 	 // 通过url，将相应的html解析为DOM文档
@@ -157,12 +189,14 @@ public class ParserCenter {
         Document doc = parser.getDocument();
         return doc;
     }
+
 	public static void main(String[] args) throws Exception {
-		ParserCenter center=new ParserCenter();
+		
 		long c=System.currentTimeMillis();
 		center.load(new InputSource( ParserCenter.class.getResourceAsStream("/htmlconf.xml")));
-		System.out.println(System.currentTimeMillis()-c);
+	
 		List<JSONObject> list=center.parserJSON("http://dealer.autohome.com.cn/1906/contact.html");
+		System.out.println(System.currentTimeMillis()-c);
 		for(JSONObject jsonObject:list)
 		{
 			System.out.println(jsonObject.toString());

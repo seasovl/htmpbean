@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			<dataSource type="POOLED">
 				<property name="driver" value="org.hsqldb.jdbc.JDBCDriver" />
 				<!-- <property name="url" value="jdbc:hsqldb:file:ibatisconf/data/htmpdb" /> -->
-				<property name="url" value="jdbc:hsqldb:mem:htmpdb" />
+				<property name="url" value="jdbc:hsqldb:mem:htmpdb;shutdown=true" />
 				<property name="username" value="SA" />
 				<property name="password" value="" />
 			</dataSource>

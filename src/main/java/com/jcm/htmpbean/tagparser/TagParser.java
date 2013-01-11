@@ -44,8 +44,12 @@ public class TagParser {
 		if (str.indexOf("$")>=0) {
 			//正则设置 
 			str=str.substring(str.indexOf("${")+"${".length(), str.lastIndexOf("}"));
-			eleMeta.setFistregstr(str.substring(0, str.indexOf("#{")));
-			eleMeta.setLastregstr(str.substring(str.lastIndexOf("}")+1));
+			String firststr=str.substring(0, str.indexOf("#{"));
+			String laststr=str.substring(str.lastIndexOf("}")+1);
+			if(firststr!=null && ! firststr.trim().equals(""))
+				eleMeta.setFistregstr(Pattern.compile(firststr));
+			if(laststr!=null && ! laststr.trim().equals(""))
+				eleMeta.setLastregstr(Pattern.compile(laststr));
 			eleMeta.setIsregxp(true);
 			str=str.substring(str.indexOf("#{"), str.lastIndexOf("}")+1);
 		}
