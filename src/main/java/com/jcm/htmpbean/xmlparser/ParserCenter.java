@@ -1,8 +1,6 @@
 package com.jcm.htmpbean.xmlparser;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,6 +24,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.jcm.htmpbean.bean.EleBlock;
+import com.jcm.htmpbean.bean.EleData;
 import com.jcm.htmpbean.htmlparser.HtmlParser;
 import com.jcm.htmpbean.tagparser.TagParser;
 
@@ -55,13 +54,6 @@ public class ParserCenter {
 				Node id=attributeMap.getNamedItem("id");
 				Node regxurl=attributeMap.getNamedItem("regx-url");
 				Node htmlbean=attributeMap.getNamedItem("htmlbean");
-	/*			Map<String,String> map=new HashMap<String,String>();
-				map.put("id", id.getNodeValue());
-				map.put("regxurl", regxurl.getNodeValue());
-				map.put("htmlbean", htmlbean.getNodeValue());
-				SqlSession session=ConfPersistence.openSession();
-				int ins=session.insert("insertRegexpUrl", map);
-				session.commit();*/
 				regexp.put(id.getNodeValue(),Pattern.compile(regxurl.getNodeValue()));
 				
 				EleBlock eleBlock= TagParser.parser(new InputSource(ParserCenter.class.getResourceAsStream("/"+htmlbean.getNodeValue())));
@@ -95,14 +87,6 @@ public class ParserCenter {
 	}
 	public synchronized void load(InputSource stream)
 	{	
-		try {
-			PrintWriter printWriter=new PrintWriter("E:/log.txt");
-			printWriter.write(Thread.currentThread().getName());
-			printWriter.flush();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder;
 		try {
@@ -134,33 +118,59 @@ public class ParserCenter {
 		}
 		return jsonList;
 	}
-	public List<Map<String,String>> parserMap(InputSource inputSource,String url)
+	
+	public EleData parserEleData(InputSource inputSource,String url)
 	{
 		 Document document= getDocument( inputSource );
-//		 SqlSession session= ConfPersistence.openSession();
-//		 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
 		 String id=findRegexpID(url);
 		 if(id!=null)
 		 {
-		//	 Map<String,String> map= list.get(0);
 			 System.out.println(id);
 			 return htmlParser.parserHtml(mapEle.get(id), document);
 		 }
 		return null;
 	}
-	public List<Map<String,String>> parserMap(String url)
+	public EleData parserEleData(String url)
 	{
 		 Document document= getDocument( url );
-	//	 SqlSession session= ConfPersistence.openSession();
-	//	 List<Map<String,String>> list=session.selectList("selectRegexpUrl",url);
 		 String id=findRegexpID(url);
 		 if(id!=null)
 		 {
-			 //Map<String,String> map= list.get(0);
 			 System.out.println(id);
 			 return htmlParser.parserHtml(mapEle.get(id), document);
 		 }
 		return null;
+	}
+	
+	public List<Map<String,String>> parserMap(String url)
+	{ 
+		EleData eleData=this.parserEleData(url);
+		List<Map<String,String>> maplist=new ArrayList<Map<String,String>>();
+		this.conventMap(maplist, eleData);
+		return maplist;
+	}
+	public List<Map<String,String>> parserMap(InputSource inputSource,String url)
+	{
+		EleData eleData=this.parserEleData(inputSource, url);
+		List<Map<String,String>> maplist=new ArrayList<Map<String,String>>();
+		this.conventMap(maplist, eleData);
+		return maplist;
+	}
+	private void conventMap(List<Map<String,String>> maplist,EleData eleData)
+	{
+		List<EleData> list= eleData.getSubData();
+		if(list!=null && list.size()>0){
+			for(int i=0; i!=list.size();++i){
+				conventMap(maplist,list.get(i));
+			}
+			for(int j=0; j!=maplist.size();++j){
+				maplist.get(j).putAll(eleData.getBlocks().get(0));
+			}
+		}else{
+			maplist.addAll(eleData.getBlocks());
+		}
+
+		
 	}
 	 // 通过url，将相应的html解析为DOM文档
     public  Document getDocument(InputSource inputSource) {
@@ -195,11 +205,11 @@ public class ParserCenter {
 		long c=System.currentTimeMillis();
 		center.load(new InputSource( ParserCenter.class.getResourceAsStream("/htmlconf.xml")));
 	
-		List<JSONObject> list=center.parserJSON("http://dealer.autohome.com.cn/1906/contact.html");
+		List<JSONObject> eleData =center.parserJSON("http://dealer.autohome.com.cn/80115/price.html");
 		System.out.println(System.currentTimeMillis()-c);
-		for(JSONObject jsonObject:list)
+		for(JSONObject jsonObject:eleData)
 		{
-			System.out.println(jsonObject.toString());
+			System.out.println(jsonObject);
 		}
 	}
 }

@@ -27,7 +27,9 @@ public class TagParser {
 		try {
 			documentBuilder = builderFactory.newDocumentBuilder();
 			Document document=documentBuilder.parse(stream);
-			xmlparser(document.getFirstChild(),eleBlock,new EleMeta());
+			EleMeta eleMeta=new EleMeta();
+			eleMeta.initEleMeta();
+			xmlparser(document.getFirstChild(),eleBlock,eleMeta);
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}catch (SAXException e) {
@@ -62,7 +64,7 @@ public class TagParser {
 	{
 		if(node.getNodeType()==Node.TEXT_NODE)
 		{
-			if(node.getNodeValue()!=null && ! node.getNodeValue().trim().equals("") &&  pattern.matcher( node.getNodeValue() ).find()){
+			if(node.getNodeValue()!=null && ! node.getNodeValue().trim().equals("") && pattern.matcher( node.getNodeValue() ).find()){
 				Node pnode=node.getParentNode();
 				NamedNodeMap attrList=pnode.getAttributes();
 				if (attrList != null) {
@@ -75,6 +77,12 @@ public class TagParser {
 					}
 				}
 				getJname(node, eleMeta);
+				String curpath=eleMeta.getHtmlpath();
+				if(!curpath.equals(""))
+				{
+					curpath=curpath.substring(1,curpath.length());
+				}
+				eleMeta.setHtmlpath(curpath);
 				eleBlock.getEleMetas().add(eleMeta);	
 			}
 		}else if(node.getNodeType()==Node.ATTRIBUTE_NODE)
@@ -82,6 +90,12 @@ public class TagParser {
 			getJname(node, eleMeta);
 			eleMeta.setType("attr");
 			eleMeta.setProname(node.getNodeName());
+			String curpath=eleMeta.getHtmlpath();
+			if(!curpath.equals(""))
+			{
+				curpath=curpath.substring(1,curpath.length());
+			}
+			eleMeta.setHtmlpath(curpath);
 			eleBlock.getEleMetas().add(eleMeta);
 		}else if(node.getNodeType()==Node.ELEMENT_NODE){
 			if(node.getNodeName().trim().equalsIgnoreCase("list"))
@@ -93,10 +107,16 @@ public class TagParser {
 					for(int i=0;i!=nodeList.getLength();++i)
 					{
 						EleMeta subele=new EleMeta();
-						subele.clone(eleMeta);
+						//subele.clone(eleMeta);
 						xmlparser(nodeList.item(i),subEleBlock,subele);
 					}
 				}
+				String cupath=eleMeta.getHtmlpath();
+				if(!cupath.equals(""))
+				{
+					cupath=cupath.substring(1,cupath.length());
+				}
+				eleBlock.getCurrentPath().add(cupath);
 				eleBlock.getSubBlocks().add(subEleBlock);
 			}else{
 				//设置路径
@@ -153,18 +173,20 @@ public class TagParser {
 				equals.setEqualsname(ae.getNodeName());
 				String estr=ae.getNodeValue();
 				estr=estr.substring(estr.indexOf("(")+1, estr.indexOf(")"));
-			//	attrList.removeNamedItem(ae.getNodeName());
+			//	attrList.removeNamedItem(ae.getNodeName()); 
 				equals.setEqualsvalue(estr);
 				break;
 			}
 		}
 	}
-/*	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
+	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
 		 DocumentBuilder documentBuilder= builderFactory.newDocumentBuilder();
 		 Document document=documentBuilder.parse(TagParser.class.getResourceAsStream("/htmlbean/autohomeDealer.xml"));
 		 EleBlock eleBlock=new EleBlock();
-		xmlparser(document.getChildNodes().item(0),eleBlock,new EleMeta());
+		 EleMeta eleMeta=new EleMeta();
+		 eleMeta.initEleMeta();
+		xmlparser(document.getChildNodes().item(0),eleBlock,eleMeta);
 		System.out.println(eleBlock.getEleMetas().size());
-	}*/
+	}
 }

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+
+	<bean id="xgodealer" htmlbean="htmlbean/xgoDealer.xml" regx-url="http://dealer.xgo.com.cn/d_\d+/price.html"></bean>
+	<bean id="autohomeprice" htmlbean="htmlbean/autohomeprice.xml" regx-url="http://dealer.autohome.com.cn/\d+/price.html"></bean>
 	<bean id="autohomedealer" htmlbean="htmlbean/autohomeDealer.xml" regx-url="http://dealer.autohome.com.cn/\d+/contact.html"></bean>
 	<!-- <bean id="autohome3" htmlbean="htmlbean/autohomeImg.xml" regx-url="http://car.autohome.com.cn/photo/series/10887/1/1667877.html"></bean>
 	<bean id="autohome4" htmlbean="htmlbean/autohomePrice.xml" regx-url="http://dealer.autohome.com.cn/3969/b_770.html"></bean> -->

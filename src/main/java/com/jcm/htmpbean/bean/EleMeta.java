@@ -94,6 +94,10 @@ public class EleMeta implements Serializable{
 		this.equalsname=eleMeta.equalsname;
 		this.equalsvalue=eleMeta.equalsvalue;
 	}
+	public void initEleMeta()
+	{
+		this.setHtmlpath("/");
+	}
 	public String print()
 	{
 		return 	"htmlpath="+this.htmlpath+

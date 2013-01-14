@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+	<head>
+		<title>#{title}</title>
+	</head>
+	<body>
+		<div-4>
+			<div-2>
+				<div>
+					<div>
+						<ul>
+							<li>
+								<list>
+									<table>
+										<tbody>
+											<tr>
+												<td-2>
+													<a>#{brandtype}</a>
+												</td-2>
+												<td-3>
+													<a>#{price}</a>
+												</td-3>
+											</tr>
+										</tbody>
+									</table>
+									<dl>
+										<dt>
+											<a>#{brand}</a>
+										</dt>
+									</dl>
+								</list>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div-2>
+		</div-4>
+
+	</body>
+</html>
+<!-- 汽车之家 经销商数据 -->

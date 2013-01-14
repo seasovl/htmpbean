@@ -26,12 +26,14 @@
 		<div>
 			<div>
 				<div>
-					<ul>
-						<li-1>${公司名称：#{company1}}</li-1>
-						<li-2>${地址：#{addr}}</li-2>
-						<li-4>${传真：#{tel1}}</li-4>
-						<li-5>${公司网址：#{companyUri}}</li-5>
-					</ul>
+					<list>
+						<ul>
+							<li-1>${公司名称：#{company1}}</li-1>
+							<li-2>${地址：#{addr}}</li-2>
+							<li-4>${传真：#{tel1}}</li-4>
+							<li-5>${公司网址：#{companyUri}}</li-5>
+						</ul>
+					</list>
 				</div>
 			</div>
 		</div>

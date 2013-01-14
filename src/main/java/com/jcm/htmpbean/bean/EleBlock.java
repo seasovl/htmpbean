@@ -5,6 +5,7 @@ import java.util.List;
 
 public class EleBlock {
 	private List<EleMeta> eleMetas=new ArrayList<EleMeta>();
+	private List<String> currentPath=new ArrayList<String>();
 	private List<EleBlock>subBlocks=new ArrayList<EleBlock>();
 	public List<EleMeta> getEleMetas() {
 		return eleMetas;
@@ -17,5 +18,11 @@ public class EleBlock {
 	}
 	public void setSubBlocks(List<EleBlock> subBlocks) {
 		this.subBlocks = subBlocks;
+	}
+	public List<String> getCurrentPath() {
+		return currentPath;
+	}
+	public void setCurrentPath(List<String> currentPath) {
+		this.currentPath = currentPath;
 	}
 }
