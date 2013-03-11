@@ -33,6 +33,7 @@ public class ParserCenter {
 	private  static HtmlParser htmlParser=new HtmlParser();
 	private static Map<String,EleBlock> mapEle=new HashMap<String, EleBlock>();
 	private static Map<String,Pattern> regexp=new HashMap<String, Pattern>();
+	private static String PATH=ParserCenter.class.getResource("/").getPath();
 	static {
 		center=new ParserCenter();
 	}
@@ -56,13 +57,13 @@ public class ParserCenter {
 				Node htmlbean=attributeMap.getNamedItem("htmlbean");
 				regexp.put(id.getNodeValue(),Pattern.compile(regxurl.getNodeValue()));
 				
-				EleBlock eleBlock= TagParser.parser(new InputSource(ParserCenter.class.getResourceAsStream("/"+htmlbean.getNodeValue())));
+				EleBlock eleBlock= TagParser.parser(new InputSource(PATH+"/"+htmlbean.getNodeValue()));
 				mapEle.put(id.getNodeValue(), eleBlock);
 				
 			}else if(nodelis.getNodeName().trim().equalsIgnoreCase("include")){
 				AttributeMap attributeMap=(AttributeMap) nodelis.getAttributes();
 				Node file=attributeMap.getNamedItem("file");
-				load(new InputSource( ParserCenter.class.getResourceAsStream("/"+file.getNodeValue())));
+				load(new InputSource(PATH+"/"+file.getNodeValue()));
 			}
 		}
 	}
