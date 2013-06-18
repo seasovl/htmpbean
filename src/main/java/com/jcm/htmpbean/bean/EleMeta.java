@@ -9,7 +9,7 @@ public class EleMeta implements Serializable{
 	private String jname; //json key值
 	private String proname;//属性名
 	private String type="txt"; //类型信息是 属性 或者 文本  attr /  txt
-	
+	private Boolean isRef=false;
 	
 	private Boolean isregxp=false;//是否使用正则匹配
 	private Pattern fistregstr;//首正则字符
@@ -26,6 +26,12 @@ public class EleMeta implements Serializable{
 	}
 	public String getJname() {
 		return jname;
+	}
+	public Boolean getIsRef() {
+		return isRef;
+	}
+	public void setIsRef(Boolean isRef) {
+		this.isRef = isRef;
 	}
 	public void setJname(String jname) {
 		this.jname = jname;

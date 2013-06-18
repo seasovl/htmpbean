@@ -1,6 +1,7 @@
 package com.jcm.htmpbean.xmlparser;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -206,7 +207,7 @@ public class ParserCenter {
 		long c=System.currentTimeMillis();
 		center.load(new InputSource( ParserCenter.class.getResourceAsStream("/htmlconf.xml")));
 	
-		List<JSONObject> eleData =center.parserJSON("http://dealer.autohome.com.cn/80115/price.html");
+		List<JSONObject> eleData =center.parserJSON(new InputSource(new StringReader("<div class='t1203_fbox'><span class='f_eclip' id='w7'><a target='_blank' href='/7/'>奥迪A8L</a></span>		</div>")), "carAutohome");
 		System.out.println(System.currentTimeMillis()-c);
 		for(JSONObject jsonObject:eleData)
 		{

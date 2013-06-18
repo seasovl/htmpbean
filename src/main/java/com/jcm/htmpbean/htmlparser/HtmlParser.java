@@ -1,5 +1,6 @@
 package com.jcm.htmpbean.htmlparser;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +8,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.apache.xpath.XPathAPI;
 import org.w3c.dom.Document;
@@ -93,9 +101,22 @@ public class HtmlParser {
 						mapObj.put(eleMeta.getJname(), attrValue);
 					}else if(eleMeta.getType().trim().equalsIgnoreCase("txt")){
 						Node node=nodeList.item(n);
-						String txtValue=node.getTextContent().trim();
-						txtValue=regex(eleMeta, txtValue);
-						mapObj.put(eleMeta.getJname(), txtValue);
+						if(eleMeta.getIsRef()){
+							
+						   Source source = new DOMSource(node); 
+						   ByteArrayOutputStream  bos  =  new  ByteArrayOutputStream(); 
+				           Result res = new StreamResult(bos); 
+				            Transformer xformer = TransformerFactory.newInstance().newTransformer(); 
+				            xformer.setOutputProperty(OutputKeys.ENCODING, "utf-8"); 
+				            xformer.transform(source, res); 
+				            String txtValue=bos.toString();
+				            txtValue=  txtValue.substring(txtValue.indexOf(">")+1);
+							mapObj.put(eleMeta.getJname(), txtValue);
+						}else{
+							String txtValue=node.getTextContent().trim();
+							txtValue=regex(eleMeta, txtValue);
+							mapObj.put(eleMeta.getJname(), txtValue);
+						}
 					}
 					if( eleMetas.size() !=nodeList.getLength() && nodeList.getLength()==1)
 					{

@@ -18,7 +18,7 @@ import com.jcm.htmpbean.bean.EleBlock;
 import com.jcm.htmpbean.bean.EleMeta;
 
 public class TagParser {
-	public static Pattern pattern=Pattern.compile("[#\\$]\\{.*");
+	public static Pattern pattern=Pattern.compile("[#\\$\\*]\\{.*");
 	public static EleBlock parser(InputSource stream)
 	{
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -54,10 +54,16 @@ public class TagParser {
 				eleMeta.setLastregstr(Pattern.compile(laststr));
 			eleMeta.setIsregxp(true);
 			str=str.substring(str.indexOf("#{"), str.lastIndexOf("}")+1);
+		}else if(str.indexOf("#{")>=0){
+			//正常属性设置
+			str=str.substring(str.indexOf("#{")+"#{".length(), str.lastIndexOf("}"));
+			eleMeta.setJname(str);
+		}else if(str.indexOf("*{")>=0){
+			//引用属性设置
+			eleMeta.setIsRef(true);
+			str=str.substring(str.indexOf("*{")+"*{".length(), str.lastIndexOf("}"));
+			eleMeta.setJname(str);
 		}
-		//正常属性设置
-		str=str.substring(str.indexOf("#{")+"#{".length(), str.lastIndexOf("}"));
-		eleMeta.setJname(str);
 	}
 	//填充数据
 	private static  void xmlparser(Node node,EleBlock eleBlock,EleMeta eleMeta)
@@ -182,7 +188,7 @@ public class TagParser {
 	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
 		 DocumentBuilder documentBuilder= builderFactory.newDocumentBuilder();
-		 Document document=documentBuilder.parse(TagParser.class.getResourceAsStream("/htmlbean/autohomeDealer.xml"));
+		 Document document=documentBuilder.parse(TagParser.class.getResourceAsStream("/htmlbean/carAutohome.xml"));
 		 EleBlock eleBlock=new EleBlock();
 		 EleMeta eleMeta=new EleMeta();
 		 eleMeta.initEleMeta();
