@@ -321,11 +321,12 @@ public class HtmlParser {
 			if(eleMeta.getLastregstr()!=null)
 			{
 				Pattern pattern=eleMeta.getLastregstr();
-				 Matcher matcher= pattern.matcher(str);
+				String lastStr =str.substring(beginIndex);
+				 Matcher matcher= pattern.matcher(lastStr);
 				 if(matcher.find())
 				 {
 					String subStr= matcher.group();
-					endIndex=str.indexOf(subStr);
+					endIndex=beginIndex+lastStr.indexOf(subStr);
 				 }
 			}
 			if(beginIndex > -1 )

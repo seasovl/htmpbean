@@ -43,7 +43,7 @@ public class TagParser {
 	{
 		//设置jname
 		String str=node.getNodeValue();
-		if (str.indexOf("$")>=0) {
+		if (str.indexOf("${")>=0) {
 			//正则设置 
 			str=str.substring(str.indexOf("${")+"${".length(), str.lastIndexOf("}"));
 			String firststr=str.substring(0, str.indexOf("#{"));
@@ -54,7 +54,8 @@ public class TagParser {
 				eleMeta.setLastregstr(Pattern.compile(laststr));
 			eleMeta.setIsregxp(true);
 			str=str.substring(str.indexOf("#{"), str.lastIndexOf("}")+1);
-		}else if(str.indexOf("#{")>=0){
+		}
+		if(str.indexOf("#{")>=0){
 			//正常属性设置
 			str=str.substring(str.indexOf("#{")+"#{".length(), str.lastIndexOf("}"));
 			eleMeta.setJname(str);
